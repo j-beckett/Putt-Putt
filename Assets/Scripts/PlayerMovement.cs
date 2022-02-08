@@ -15,6 +15,18 @@ public class PlayerMovement : MonoBehaviour
     
     private CharacterController cc;
 
+    private float gravity = -9.81f;
+    private float yVelocity = 0.0f;
+
+    //private float yVelocityWhenGrounded = -4.0f;
+
+
+    // jumping vars
+
+    private float time = 0.0f;
+    private bool isMoving = false;
+    private bool jumpPress = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,19 +37,47 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        xMovement = Input.GetAxis("Horizontal");
+        float deltaX = Input.GetAxis("Horizontal"); 
+        float deltaZ = Input.GetAxis("Vertical");
+        Vector3 movement = new Vector3(deltaX, 0, deltaZ);
 
-        zMovement = Input.GetAxis("Vertical");
+        // Clamp magnitude for diagonal movement
+        movement = Vector3.ClampMagnitude (movement, 1.0f);
 
-        Vector3 move = new Vector3(xMovement, 0, zMovement) * Time.deltaTime * speed ;
+        // determine how far to move on the XZ plane movement *= speed;
+        movement *= speed;
 
-        cc.transform.Translate(move);
+        //gravity is here
+        yVelocity += gravity * Time.deltaTime;
 
-        //transform.Translate(move);
+        if (cc.isGrounded && yVelocity < 0.0)
+        {
+            //yVelocity = yVelocityWhenGrounded;
+        }
+
+        movement.y = gravity;
+
+        //end gravity
+
+        // Movement code Frame Rate Independent 
+        movement *= Time.deltaTime;
+
+
+        // Convert local to global coordinates 
+        movement = transform.TransformDirection(movement);
+        cc.Move(movement);
+
+
+        jumpPress = Input.GetButtonDown("Jump");
+
+        if (jumpPress)
+        {
+            transform.Translate(Vector3.up, Space.World);
+        }
     }
 
     /*private void FixedUpdate()
     {
-       
+
     }*/
 }
