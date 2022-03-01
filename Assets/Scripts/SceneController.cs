@@ -9,13 +9,13 @@ public class SceneController : MonoBehaviour
     private GameObject enemyPrefab;
     private GameObject enemy;
     private Vector3 spawnPoint = new Vector3(0, 0, 5);
-    private int numEnemies;
+
+    private int numEnemies = 5;
+
     private GameObject[] enemyArr;
     // Start is called before the first frame update
     void Start()
     {
-        numEnemies = 14;
-
         enemyArr = new GameObject[numEnemies];
         for (int i = 0; i < numEnemies; i++)
         {
