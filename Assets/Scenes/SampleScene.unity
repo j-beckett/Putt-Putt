@@ -5109,7 +5109,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1012164703}
         m_TargetAssemblyTypeName: SettingsPopup, Assembly-CSharp
-        m_MethodName: SwitchWindows
+        m_MethodName: OnOKButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6579,7 +6579,19 @@ MonoBehaviour:
   m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1012164703}
+        m_TargetAssemblyTypeName: SettingsPopup, Assembly-CSharp
+        m_MethodName: OnDifficultyValueChanged
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1007741034
 GameObject:
   m_ObjectHideFlags: 0
@@ -6767,7 +6779,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionsPopup: {fileID: 1679923299}
   difficultySlider: {fileID: 997206312}
-  diffLabel: {fileID: 1682793289}
+  diffLabel: {fileID: 1766190157}
 --- !u!1 &1018184657
 GameObject:
   m_ObjectHideFlags: 0
@@ -10945,7 +10957,7 @@ GameObject:
   - component: {fileID: 1682793290}
   - component: {fileID: 1682793289}
   m_Layer: 5
-  m_Name: DiffLabel
+  m_Name: Settings
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11648,7 +11660,7 @@ GameObject:
   - component: {fileID: 1766190158}
   - component: {fileID: 1766190157}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: DiffLabel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

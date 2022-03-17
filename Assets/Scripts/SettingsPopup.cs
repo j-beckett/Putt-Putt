@@ -14,6 +14,9 @@ public class SettingsPopup : MonoBehaviour
     public void Open()
     {
         gameObject.SetActive(true);
+
+        difficultySlider.value = PlayerPrefs.GetInt("difficulty", 1);
+        UpdateDifficulty(difficultySlider.value);
     }
     public void Close()
     {
@@ -27,7 +30,10 @@ public class SettingsPopup : MonoBehaviour
         optionsPopup.Open();
     }
 
-
+    public void OnOKButton() {
+        PlayerPrefs.SetInt("difficulty", (int)difficultySlider.value);
+        SwitchWindows();
+    }
     public void UpdateDifficulty(float difficulty) 
     {
         diffLabel.text = "Difficulty: " +((int)difficulty).ToString();
@@ -41,7 +47,7 @@ public class SettingsPopup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        diffLabel.text = "Difficulty: ";
     }
 
     // Update is called once per frame
