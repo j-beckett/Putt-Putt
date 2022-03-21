@@ -19,9 +19,43 @@ public class SceneController : MonoBehaviour
     private int numIguanas = 13;
     private Vector3 iguanaSpawnPoint = new Vector3(-5, 0, -13);
 
+    [SerializeField] private UIController ui;
 
-    // Start is called before the first frame update
-    void Start()
+    private int score = 0;
+
+    void Awake()
+    {
+        Messenger.AddListener(GameEvent.ENEMY_DEAD, this.OnEnemyDead);
+        Messenger<int>.AddListener(GameEvent.DIFFICULTY_CHANGED, OnDifficultyChanged);
+    }
+    void OnDestroy()
+    {
+        Messenger.RemoveListener(GameEvent.ENEMY_DEAD, this.OnEnemyDead);
+        Messenger<int>.RemoveListener(GameEvent.DIFFICULTY_CHANGED, OnDifficultyChanged);
+    }
+    void OnEnemyDead()
+    {
+        score++;
+        ui.UpdateScore(score);
+    }
+
+    private void OnDifficultyChanged(int newDifficulty)
+    {
+        Debug.Log("Scene.OnDifficultyChanged(" + newDifficulty + ")");
+        for (int i = 0; i < enemyArr.Length; i++)
+        {
+            WanderingAI ai = enemyArr[i].GetComponent<WanderingAI>();
+            ai.SetDifficulty(newDifficulty);
+        }
+    }
+
+    int getDifficulty() {
+
+        return PlayerPrefs.GetInt("difficulty", 1);
+    }
+
+        // Start is called before the first frame update
+        void Start()
     {
         enemyArr = new GameObject[numEnemies];
         for (int i = 0; i < numEnemies; i++)
@@ -62,8 +96,10 @@ public class SceneController : MonoBehaviour
                 enemy.transform.position = spawnPoint;
                 float angle = Random.Range(0, 360);
                 enemy.transform.Rotate(0, angle, 0);
-
+                
                 enemyArr[i] = enemy;
+                WanderingAI ai = enemyArr[i].GetComponent<WanderingAI>();
+                ai.SetDifficulty(getDifficulty());
             }
         }
     }

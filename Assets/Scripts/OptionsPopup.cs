@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionsPopup : MonoBehaviour
+public class OptionsPopup : BasePopup
 {
     [SerializeField] UIController uIController;
 
 
     [SerializeField] SettingsPopup settingsPopup;
-    public void Open()
+    override public void Open()
     {
-        gameObject.SetActive(true);
+        base.Open();
     }
-    public void Close()
+    override public void Close()
     {
-        gameObject.SetActive(false);
+        base.Close();
     }
-    public bool IsActive() { return gameObject.activeSelf; }
+    override public bool IsActive() {
+        return base.IsActive();
+    }
     public void OnSettingsButton()
     {
         Debug.Log("settings clicked");

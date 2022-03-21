@@ -19,6 +19,10 @@ public class WanderingAI : MonoBehaviour
     public float fireRate = 2.0f; 
     private float nextFire = 0.0f;
 
+    private int difficulty = 1;
+    private float baseSpeed = 0.25f;
+    float difficultySpeedDelta = 0.3f; // the change in speed per level of difficulty
+
     public void ChangeState(EnemyStates state) {
         this.state = state; 
     }
@@ -77,6 +81,11 @@ public class WanderingAI : MonoBehaviour
 
         //draw a wire spehere at the point on the end of the range vector
         Gizmos.DrawWireSphere(rangeTest, sphereRadius);
+    }
+
+    public void SetDifficulty(int newDifficulty) {
+        difficulty = newDifficulty;
+        enemySpeed = baseSpeed + (difficulty * difficultySpeedDelta);
     }
 
 

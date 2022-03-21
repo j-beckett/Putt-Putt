@@ -3190,6 +3190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 7086741132008216516, guid: 67a01f1ea4cf1bf46a1ffc047e9aa830, type: 3}
   iguanaPrefab: {fileID: 887253438966547160, guid: 8f7bf6121db980545bea9f0d96485ac9, type: 3}
+  ui: {fileID: 1949413973}
 --- !u!4 &372845901
 Transform:
   m_ObjectHideFlags: 0
