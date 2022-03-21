@@ -36,6 +36,7 @@ public class SettingsPopup : MonoBehaviour
     }
     public void UpdateDifficulty(float difficulty) 
     {
+        Debug.Log("UD:" + difficulty);
         diffLabel.text = "Difficulty: " +((int)difficulty).ToString();
     }
     public void OnDifficultyValueChanged(float difficulty) 
