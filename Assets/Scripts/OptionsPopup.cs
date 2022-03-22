@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class OptionsPopup : BasePopup
 {
-    [SerializeField] UIController uIController;
+    //[SerializeField] UIController uIController;
 
 
     [SerializeField] SettingsPopup settingsPopup;
@@ -35,7 +35,7 @@ public class OptionsPopup : BasePopup
     {
         Debug.Log("return to game"); Close();
 
-        uIController.SetGameActive(true);
+        //uIController.SetGameActive(true);
     }
 
 
